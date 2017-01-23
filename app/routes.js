@@ -20,19 +20,19 @@ String.prototype.capitalize = function() {
 }
 
 
-function getAppointments(res) {
+// function getAppointments(res) {
 
 
-    Appointment.find(function (err, appointments) {
+//     Appointment.find(function (err, appointments) {
 
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-        }
-        console.log(appointments)
-        res.json(appointments); // return all todos in JSON format
-    });
-};
+//         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+//         if (err) {
+//             res.send(err);
+//         }
+//         console.log(appointments)
+//         res.json(appointments); // return all todos in JSON format
+//     });
+// };
 
 // function getBlackouts(res){
 //     Blackout.find(function (err, blackouts){
@@ -76,7 +76,7 @@ module.exports = function (app) {
         // get all appointments
         app.get('/api/appointments', function (req, res){
                 // use mongoose to get all appointments
-                getAppointments(res);
+                // getAppointments(res);
             });
 
 
@@ -377,13 +377,13 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
 
         // delete an appointment
         app.delete('/api/appointments/:appointment_id', function (req, res){
-            Appointment.remove({
-                _id: req.params.appointment_id
-            }, function (err, todo){
-                if(err)
-                    res.send(err)
-                getAppointments(res);
-            });
+            // Appointment.remove({
+            //     _id: req.params.appointment_id
+            // }, function (err, todo){
+            //     if(err)
+            //         res.send(err)
+            //     // getAppointments(res);
+            // });
         });
 
         // app.get("/api/blackouts/:blackout_id", function(req, res){
