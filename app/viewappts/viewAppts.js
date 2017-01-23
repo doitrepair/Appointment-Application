@@ -11,7 +11,7 @@ appointmentsView.config(['$routeProvider', '$httpProvider', function($routeProvi
 }])
 
 appointmentsView.controller('AppointmentsViewCont', function($scope, $http) {
-	var url = 'http://localhost:8080/api/appointments';
+	var url = '/api/appointments';
 	var appts = {};
 
 	$scope.list = function() {
