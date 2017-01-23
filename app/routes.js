@@ -11,9 +11,9 @@ var connection = mysql.createConnection({
     password: '2Xdrq9*6',
     database: 'acme_wisc_edu_hd'
 })
-
+console.log("attempting connection")
 connection.connect();
-// console.log("hella ya")
+console.log("hella ya")
 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
