@@ -27,7 +27,7 @@ appointmentsView.controller('AppointmentsViewCont', function($scope, $http) {
 		var id = event.target.id;
 		console.log(id);
 		$http.delete(url + "/" +  id).success(function(){
-			console.log("matha fock");
+			// console.log("matha fock");
 
 		})
 		$scope.list();
