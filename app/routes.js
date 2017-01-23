@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
     database: 'acme_wisc_edu_hd'
 })
 
-connection.connect();
+// connection.connect();
 // console.log("hella ya")
 
 String.prototype.capitalize = function() {
