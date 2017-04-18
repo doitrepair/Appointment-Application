@@ -225,8 +225,8 @@ $(document).ready(function() {
 				date: __date,
 				time: __times
 			},
-			success: function(d) {
-				console.log(d)
+			complete: function(d) {
+				console.log("moving agent now")
 				$.ajax({
 					type: "PUT",
 					url: "/api/schedule",

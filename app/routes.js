@@ -54,8 +54,8 @@ function sendMail(req){
     var mailOptions = {
         from: '"DoIT Tech Store" <doitemailtest@gmail.com>',
         to: req.body.email,
-        subject: 'Appointment',
-        text: 'Hello ' + req.body.name + '! This is an email confirmation for the appointment that you have scheduled for ' + req.body.date
+        subject: 'Cherwell Appointment',
+        text: 'name='+req.body.name+'\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date
     }
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -326,13 +326,13 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
             var __name = req.body.name
             var __email = req.body.email
             var __description = String(req.body.description)
-            var __date = String(req.body.date)
+            var __date = req.body.date.toString();
             var __time = req.body.time
 
-            console.log(__name)
+            console.log("date: " + __date)
 
             var __query = "INSERT INTO SS_Appointments\nVALUES ('"+ id_inc + "', '" + __device_type + "', '" + __consult_type + 
-                          "', '" + __device_brand + "', '" + __name + "', '" + __email + "', '" + __description + "', '" + + __date + "', '" +
+                          "', '" + __device_brand + "', '" + __name + "', '" + __email + "', '" + __description + "', '" + __date + "', '" +
                           __time + "')"
 
 
@@ -342,6 +342,7 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
                 if(err)
                     res.send(err)
                 console.log(data)
+                res.json(data)
             })
 
             // console.log(__device_type)
@@ -417,7 +418,7 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
 
 
         app.get('*', function (req, res) {
-        res.sendFile(__dirname + '/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+        res.sendFile(__dirname + '/index.html'); // the single view file (angular will handle the page changes on the front-end)
     });
     };
 
