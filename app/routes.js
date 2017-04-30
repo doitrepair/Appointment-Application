@@ -43,7 +43,7 @@ String.prototype.capitalize = function() {
 //     });
 // };
 
-function sendMail(req){
+function sendMail(req, code){
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
@@ -56,6 +56,23 @@ function sendMail(req){
         to: req.body.email,
         subject: 'Cherwell Appointment',
         text: 'name='+req.body.name+'\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date
+    }
+    var mailOptions;
+    if (code == 1) {
+        // going to cherwell
+        mailOptions = {
+        from: '"DoIT Tech Store" <doitemailtest@gmail.com>',
+        to: req.body.email,
+        subject: 'Cherwell Appointment',
+        text: 'name='+req.body.name+'\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date
+    }
+    } else {
+        mailOptions = {
+        from: '"DoIT Tech Store" <doitemailtest@gmail.com>',
+        to: req.body.email,
+        subject: 'DoIT Appointment',
+        text: 'Hello! '+req.body.name+'\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date
+    }
     }
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -304,6 +321,7 @@ app.put('/api/schedule', function(req, res){
     connection.query(query, function(err, data){
         if(err)
             console.log(err)
+        sendMail(req, 1)
         console.log(data)
     })
 
@@ -342,6 +360,7 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
                 if(err)
                     res.send(err)
                 console.log(data)
+                sendMail(req, 0)
                 res.json(data)
             })
 
