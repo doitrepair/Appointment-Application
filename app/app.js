@@ -1,7 +1,5 @@
 'use strict';
 
-console.log("made it to correct app.js")
-
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
@@ -9,6 +7,7 @@ angular.module('myApp', [
   'myApp.view2',
   'myApp.appointmentsView',
   'myApp.version',
+  'myApp.home',
   'myApp.dayViews'
 ]).
 config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {
