@@ -6,11 +6,7 @@ angular.module('myApp.home', ['ngRoute'])
         $routeProvider.when('/', {
             templateUrl: 'home/home.html',
             controller: 'HomeCtrl'
-        })
-            .when('/#', {
-                templateUrl: 'home/home.html',
-                controller: 'HomeCtrl'
-            });
+        });
     }])
 
     .controller('HomeCtrl', function($scope, $route) {
