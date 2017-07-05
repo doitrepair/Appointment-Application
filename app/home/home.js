@@ -9,7 +9,8 @@ angular.module('myApp.home', ['ngRoute'])
         });
     }])
 
-    .controller('HomeCtrl', function($scope, $route) {
-
-
+    .controller('HomeCtrl', function($scope, $route, $location) {
+        $scope.schedule = function() {
+            $location.path('/view1');
+        }
     });
