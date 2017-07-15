@@ -919,7 +919,7 @@ q:after {
     .uw-hero.uw-hero-constrained-height img {
       object-fit: cover;
       object-position: 100% 100%;
-      max-height: 400px; } }
+      max-height: 300px; } }
 
 .uw-float-right {
   float: right; }
