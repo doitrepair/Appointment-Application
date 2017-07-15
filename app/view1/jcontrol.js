@@ -103,7 +103,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	$('a.redirect').click(function(){
-		console.log("shit ya")
 	})
 })
 
