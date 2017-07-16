@@ -118,7 +118,6 @@ function deleteAllCookies() {
 }
 
 var passThrough = function(e) {
-	debugger;
 	deleteAllCookies()
 	var date = e.split(",")[0]
 	var time = e.split(",")[1]
