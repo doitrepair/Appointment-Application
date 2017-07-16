@@ -12,14 +12,11 @@ view2cont.config(['$routeProvider', function($routeProvider) {
 view2cont.controller('View2Ctrl', function($scope, $route) {
 
 		$scope.reserveAppt = function() {
-            console.log("entered");
             if ($scope.firstName == undefined || $scope.lastName || $scope.email == undefined) {
-				console.log("return");
             	return;
         	}
-        	console.log("continue");
-            $location.path('/#/');
 			$route.reload();
+            $location.path('/#/');
 		}
 	
 });
