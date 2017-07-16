@@ -340,7 +340,10 @@
 	if(isInArray(time, hightimes)){
 		return time_convert[time] + "pm";
 	}
-	return time + "am";
+	if (time == "12:00" || time == "12:30")
+	    return time + "pm";
+	else
+	    return time + "am";
 }
 
  	var linkThatUp = function(day, time, date, week){
