@@ -400,7 +400,7 @@
 
 
  	$scope.crossRef = function(week){
- 		clearSched()
+ 		clearSched();
  		// console.log(blackouts, "<----")
  		for(var i = 0 ; i < days.length; i++){
  				var temp_hours = schedule[week][days[i]]
@@ -582,7 +582,7 @@
  $scope.list();
 
  $scope.update = function() {
- 	clearSched()
+ 	clearSched();
  	var val = parseInt(angular.element("#minimum").val())
  	if(threshold !== val){
  		threshold = val
@@ -591,7 +591,6 @@
  		}
  	}
  	else {
- 		console.log("ITS THE SAME STUPID")
  	}
 
  }

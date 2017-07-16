@@ -222,7 +222,7 @@ div.repair-type .inner button {
   border-radius: 5%;
 }
 
-div.input-section {
+form.input-section {
   /*background-color: black;*/
   display: none;
   width: 60%;
