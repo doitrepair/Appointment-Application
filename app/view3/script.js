@@ -57,7 +57,6 @@ var setWeek = function(week, year){
       console.log(d)
     },
     error: function(jqXHR, textStatus, errorThrown){
-      console.log("SHIT!")
     }
   })
   dates = [];

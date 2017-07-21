@@ -9,14 +9,15 @@ view2cont.config(['$routeProvider', function($routeProvider) {
 	});
 }])
 
-view2cont.controller('View2Ctrl', function($scope, $route) {
+view2cont.controller('View2Ctrl', function($scope, $location) {
 
 		$scope.reserveAppt = function() {
-            if ($scope.firstName == undefined || $scope.lastName || $scope.email == undefined) {
+            if ($scope.firstName == undefined || $scope.lastName == undefined || $scope.email == undefined) {
             	return;
         	}
-			$route.reload();
-            $location.path('/#/');
+			console.log("passed");
+
+            $location.path('/success');
 		}
 	
 });

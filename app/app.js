@@ -8,6 +8,7 @@ angular.module('myApp', [
   'myApp.appointmentsView',
   'myApp.version',
   'myApp.home',
+  'myApp.landing-page',
   'myApp.dayViews'
 ]).
 config(['$locationProvider', '$routeProvider', '$httpProvider', function($locationProvider, $routeProvider, $httpProvider) {

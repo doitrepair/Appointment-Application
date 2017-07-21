@@ -64,14 +64,14 @@
   	</div>
   </div>
   <div id="wrapperU">
-  <form class="input-section">
+  <form class="input-section" ng-controller="View2Ctrl">
 
   	<div class="user-information">
-  		First Name: <input type="text" id="firstName" name="firstName" placeholder="First name " required><br>
-  		Last Name: <input type="text" id="lastName" name="lastName" placeholder="Last Name" required><br>
-  		Email: <input type="text" id="email" name="email" placeholder="Email Address" required><br>
-  		<h2 class="uw-double-size-text">Date: </h2>
-  		<h2 class="uw-double-size-text">Time: </h2>
+  		First Name: <input type="text" id="firstName" name="firstName" ng-model="firstName" placeholder="First name " required><br>
+  		Last Name: <input type="text" id="lastName" name="lastName" ng-model="lastName" placeholder="Last Name" required><br>
+  		Email: <input type="text" id="email" name="email" ng-model="email" placeholder="Email Address" required><br>
+  		<h2 class="uw-double-size-text" id="date"></h2>
+  		<h2 class="uw-double-size-text" id="time"></h2>
 
 
   	</div>
