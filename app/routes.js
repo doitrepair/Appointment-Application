@@ -54,28 +54,28 @@ function sendMail(req, code){
         from: '"DoIT Tech Store" <doitemailtest@gmail.com>',
         to: req.body.email,
         subject: 'Cherwell Appointment',
-        text: 'name='+req.body.name+'\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date
+        text: 'name='+req.body.name+'\n\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date.substring(0, 15) + ' at ' + req.body.time
     }
-    var mailOptions;
     if (code == 1) {
         // going to cherwell
         mailOptions = {
         from: '"DoIT Tech Store" <doitemailtest@gmail.com>',
         to: req.body.email,
         subject: 'Cherwell Appointment',
-        text: 'name='+req.body.name+'\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date
+        text: 'name='+req.body.name+'\n\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date.substring(0, 15) + ' at ' + req.body.time
     }
     } else {
         mailOptions = {
         from: '"DoIT Tech Store" <doitemailtest@gmail.com>',
         to: req.body.email,
         subject: 'DoIT Appointment',
-        text: 'Hello! '+req.body.name+'\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date
+        text: 'Hello! '+req.body.name+'\n\nThis is an email confirmation for the appointment that you have scheduled for ' + req.body.date.substring(0, 15) + ' at ' + req.body.time
     }
     }
 
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
+            console.log("Failed Message Send")
             return console.log(error)
         }
         console.log("Message Sent")

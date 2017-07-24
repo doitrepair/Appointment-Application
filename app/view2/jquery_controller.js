@@ -200,50 +200,69 @@ $(document).ready(function(){
 });
 
 $(document).ready(function() {
-	$(".submit").click(function(event){
-		var _num_agents = __schedule[__time]
-		var ran = Math.floor((Math.random() * _num_agents.length) + 1);
-		var agent = _num_agents[ran-1]
-		// debugger;
-		name = $("#firstName").val() + " " + $("#lastName").val();
-		description = $("#description").val();
-		email = $("#email").val();
-		
-		//console.log(device_type + device_brand + consult_type + name + description + date);
+	var form = $("#inputForm");
+	form.validate({
+		rules: {
+			firstName: "required",
+			lastName: "required",
+			email: "required"
+		},
+		messages: {
+			firstName: "Please specify your first name",
+			lastName: "Please specify your last name",
+			email: "Please specify your email address"
+		}
+	});
 
-		// alert(__times)
-		$.ajax({
-			type: "POST",
-			url: "/api/appointments",
-			data: {
-				device_type: device_type,
-				consult_type: consult_type,
-				device_brand: device_brand,
-				name: name,
-				email: email,
-				description: description,
-				date: __date,
-				time: __times
-			},
-			complete: function(d) {
-				console.log("moving agent now")
-				$.ajax({
-					type: "PUT",
-					url: "/api/schedule",
-					data : {
-						time1 : __time,
-						time2 : __realsecond,
-						date : __date,
-						agent : agent
-					}
-				})
-				// document.cookie = null;
-				alert("Appointment for " + cookie + " is successfully reserved.\n Description: " + $("#description").val() + "\n" + ($("#firstName").val() + " " + $("#lastName").val()))
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
+	$(".uw-button").click(function(event){
+		if(!form.valid()){
+			console.log("form not valid");
+		}
+		else {
+            var _num_agents = __schedule[__time]
+            var ran = Math.floor((Math.random() * _num_agents.length) + 1);
+            var agent = _num_agents[ran - 1]
+            // debugger;
+            name = $("#firstName").val() + " " + $("#lastName").val();
+            description = $("#description").val();
+            email = $("#email").val();
 
-			}
-		});
+            //console.log(device_type + device_brand + consult_type + name + description + date);
+
+            // alert(__times)
+            $.ajax({
+                type: "POST",
+                url: "/api/appointments",
+                data: {
+                    device_type: device_type,
+                    consult_type: consult_type,
+                    device_brand: device_brand,
+                    name: name,
+                    email: email,
+                    description: description,
+                    date: __date,
+                    time: __times
+                },
+                complete: function (d) {
+                    console.log("moving agent now")
+                    $.ajax({
+                        type: "PUT",
+                        url: "/api/schedule",
+                        data: {
+                            time1: __time,
+                            time2: __realsecond,
+                            date: __date,
+                            agent: agent
+                        }
+                    })
+                    // document.cookie = null;
+                    //alert("Appointment for " + name + " is successfully reserved.\n Description: " + description)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+        }
 	})
 
 

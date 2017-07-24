@@ -9,14 +9,12 @@ view2cont.config(['$routeProvider', function($routeProvider) {
 	});
 }])
 
-view2cont.controller('View2Ctrl', function($scope, $location) {
+view2cont.controller('View2Ctrl', function($scope, $location, $http) {
 
 		$scope.reserveAppt = function() {
             if ($scope.firstName == undefined || $scope.lastName == undefined || $scope.email == undefined) {
             	return;
         	}
-			console.log("passed");
-
             $location.path('/success');
 		}
 	
