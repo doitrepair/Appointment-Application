@@ -1,0 +1,10 @@
+config/
+config.*
+config.js
+app.yaml
+.idea/
+.DS_Store
+.htaccessi
+.ipynb_checkpoints
+tst/
+.ipynb_checkpoints/
