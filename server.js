@@ -1,13 +1,13 @@
 // set up ======================================================================
-var express = require('express');
-var app = express(); 						// create our app w/ express
-var mongoose = require('mongoose'); 				// mongoose for mongodb
-var mysql = require('mysql');
-var port = process.env.PORT || 8080; 				// set the port
-// var database = require('./config/database'); 			// load the database config
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+var express 		= require('express');
+var app 			= express(); 					// create our app w/ express
+var mongoose 		= require('mongoose'); 			// mongoose for mongodb
+var mysql 			= require('mysql');
+var port 			= process.env.PORT || 8080; 	// set the port
+var morgan 			= require('morgan');
+var bodyParser 		= require('body-parser');
+var methodOverride 	= require('method-override');
+var db				= require('./config/database');
 
 
 // configuration ===============================================================
@@ -33,4 +33,3 @@ require('./app/routes.js')(app);
 // listen (start app with node server.js) ======================================
 app.listen(port);
 console.log("App listening on port " + port);
-

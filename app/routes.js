@@ -1,15 +1,17 @@
-var mysql = require('mysql');
-var nodemailer = require('nodemailer');
+var mysql 		= require('mysql');
+var nodemailer 	= require('nodemailer');
+var db 			= require('../config/database.js')
+
 var times = ['8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00',
 '16:30','17:00','17:30'];
 var id_inc = 0;
 
 
 var connection = mysql.createConnection({
-    host: 'acme.wisc.edu',
-    user: 'hdAdmin',
-    password: '2Xdrq9*6',
-    database: 'acme_wisc_edu_hd'
+    host: db.sql_host,
+    user: db.sql_user,
+    password: db.sql_password,
+    database: db.sql_database
 })
 console.log("attempting connection");
 connection.connect();
@@ -106,9 +108,9 @@ module.exports = function (app) {
                 result.setDate(result.getDate() + days);
                 return result;
             }
-            
-            
-            
+
+
+
 
             var today = new Date;
             var firstday = new Date(today.setDate(today.getDate() - today.getDay()));
@@ -169,17 +171,17 @@ module.exports = function (app) {
 
 
                             var query = "SELECT emp.Nick_Name, emp.Last_Name, sch.`date`,`8:00`, `8:30`, `9:00`, `9:30`, `10:00`, `10:30`, `11:00`, `11:30`, `12:00`, `12:30`, `13:00`, `13:30`, `14:00`, `14:30`, `15:00`, `15:30`, `16:00`, `16:30`, `17:00`, `17:30`\n" +
-                            "FROM SS_Employee as emp\n" + 
+                            "FROM SS_Employee as emp\n" +
                             "JOIN SS_Group_Assignments as grp on emp.Employee_ID = grp.Employee_ID\n" +
                             "JOIN SS_Schedule as sch on emp.Employee_ID = sch.agent\n" +
                             "JOIN SS_Schedule_Shift_Types as sst\n" +
                             "JOIN SS_Statuses as sts on sts.Status_ID = emp.`Status`\n" +
                             "WHERE grp.`Primary` = true\n" +
                             "AND emp.Employment_Active= 1\n" +
-                            "AND sts.Status_ID = 5\n" + 
+                            "AND sts.Status_ID = 5\n" +
                             "AND sst.id = 70\n" +
                             "AND sch.`date` BETWEEN '" + mon + "' AND '" + fri + "'\n" +
-                            "AND grp.Group_ID = 2\n" + 
+                            "AND grp.Group_ID = 2\n" +
                             "AND (`8:00`, `8:30`, `9:00`, `9:30`, `10:00`, `10:30`, `11:00`, `11:30`, `12:00`, `12:30`, `13:00`, `13:30`, `14:00`, `14:30`, `15:00`, `15:30`, `16:00`, `16:30`, `17:00`, `17:30`) != (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)";
 
                     // console.log(query);
@@ -197,7 +199,7 @@ module.exports = function (app) {
                             // console.log("week 2 baby")
                         }
                         var name = chunk.Nick_Name + " " + chunk.Last_Name;
-                        
+
                         if(schedule[week][day]['date'] === ""){
                             schedule[week][day]['date'] = date;
                         }
@@ -210,7 +212,7 @@ module.exports = function (app) {
                             // console.log(schedule[date][name])
                             // console.log(2);
                             for(var i = 0; i < times.length; i++){
-                                // console.log(chunk[times[i]])       
+                                // console.log(chunk[times[i]])
                                 if(chunk[times[i]] === 70){
                                     (schedule[week][day]["agents"][name]).push(times[i]);
                                 }
@@ -283,13 +285,13 @@ module.exports = function (app) {
                                     break;
                                     case "Fri" : loadSchedule(data[i], "Fri", schedule, temp);
                                     break;
-                                    default: console.log("error", switchcase) 
+                                    default: console.log("error", switchcase)
                                 }
-                                
+
                             }
                             // console.log(schedule);
                             return res.send(schedule);
-                            
+
                         })
 
             })
@@ -311,7 +313,7 @@ app.put('/api/schedule', function(req, res){
     }
     var _date_convert = __date.getFullYear() + "-" + _mon + "-" + _day
     var query = "UPDATE SS_Schedule as sch \n" +
-    "INNER JOIN SS_Employee as emp on emp.Employee_ID = sch.agent\n" +  
+    "INNER JOIN SS_Employee as emp on emp.Employee_ID = sch.agent\n" +
     "SET sch.`" + __time1 + "`=" + 64 + ", sch.`" + __time2 + "`=" + 64 +"\n" +
     "WHERE emp.Last_Name='" + __lastname + "'\n" +
     "AND emp.First_Name='" + __firstname + "'\n" +
@@ -348,13 +350,13 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
 
             console.log("date: " + __date)
 
-            var __query = "INSERT INTO SS_Appointments\nVALUES ('"+ id_inc + "', '" + __device_type + "', '" + __consult_type + 
+            var __query = "INSERT INTO SS_Appointments\nVALUES ('"+ id_inc + "', '" + __device_type + "', '" + __consult_type +
                           "', '" + __device_brand + "', '" + __name + "', '" + __email + "', '" + __description + "', '" + __date + "', '" +
                           __time + "')"
 
 
                           console.log("query: "+ __query)
-            
+
             connection.query(__query, function(err, data){
                 if(err)
                     res.send(err)
@@ -366,7 +368,7 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
             // console.log(__device_type)
             // console.log(__consult_type)
             // console.log(__device_brand)
-            
+
             // console.log(__email)
             // console.log(__description)
             // console.log(__date)
@@ -425,7 +427,7 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
         //     getBlackouts(res);
         // });
 
-        
+
 
         // app.post('/api/blackouts', function(req, res){
         //     Blackout.create({
@@ -439,5 +441,3 @@ VALUES (1, 'Laptop', 'Software', 'Apple', 'Cormick', 'cvhnilicka@gmail.com', 'Em
         res.sendFile(__dirname + '/index.html'); // the single view file (angular will handle the page changes on the front-end)
     });
     };
-
-
